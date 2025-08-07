@@ -1,0 +1,17 @@
+services:
+  qemu:
+    image: qemux/qemu
+    container_name: qemu
+    environment:
+      BOOT: "https://download1585.mediafire.com/8q33snc9s9jgLW5HqpZ6OxdwZmot29hHOSYklLACNNy65u7iS33yJbpYG6CsFLcC5skTX-m7GtgtTKR9fT4Nl-PklSBwr2RRmLeLVg5oTmxXFfBHXvZk0312kpV6w2Avsaf0pIvPjGJcLoZiz_R5hlA5Jl0-xF1RzlDXh1cuge4AzQ/w0uentftkbh3zpq/WINDOWS7PROFESSIONAL32.IMG"
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8006:8006
+    volumes:
+      - ./qemu:/storage
+    restart: always
+    stop_grace_period: 2m
