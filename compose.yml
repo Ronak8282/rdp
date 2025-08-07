@@ -1,9 +1,17 @@
 services:
-  qemu:
-    image: qemux/qemu
-    container_name: qemu
+  windows:
+    image: dockurr/windows
+    container_name: windows
     environment:
-      BOOT: "https://download1585.mediafire.com/8q33snc9s9jgLW5HqpZ6OxdwZmot29hHOSYklLACNNy65u7iS33yJbpYG6CsFLcC5skTX-m7GtgtTKR9fT4Nl-PklSBwr2RRmLeLVg5oTmxXFfBHXvZk0312kpV6w2Avsaf0pIvPjGJcLoZiz_R5hlA5Jl0-xF1RzlDXh1cuge4AzQ/w0uentftkbh3zpq/WINDOWS7PROFESSIONAL32.IMG"
+      VERSION: "https://archive.org/download/en_windows_7_ultimate_x86_dvd_x15-65921_202107/en_windows_7_ultimate_x86_dvd_x15-65921.iso"
+       LANGUAGE: English
+      REGION: en-GB
+      KEYBOARD: en-GB
+      DISK_SIZE: 62GB
+      RAM_SIZE: 4G
+      CPU_CORES: "4"
+      USERNAME: Docker
+      PASSWORD: Gates
     devices:
       - /dev/kvm
       - /dev/net/tun
@@ -11,7 +19,9 @@ services:
       - NET_ADMIN
     ports:
       - 8006:8006
+      - 3389:3389/tcp
+      - 3389:3389/udp
     volumes:
-      - ./qemu:/storage
+      - ./windows:/storage
     restart: always
     stop_grace_period: 2m
